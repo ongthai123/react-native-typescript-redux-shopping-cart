@@ -18,11 +18,11 @@ const ProductList: React.FC<Props> = ({ addProduct = () => { } }: Props) => {
 
     //sample products
     const products = [
-        { name: "Sledgehammer", price: 125.75, imageUrl: "https://cdn.shopify.com/s/files/1/0099/5732/products/Product-Image-Unavailable_0d7a0977-accb-4820-9de6-6a77e6baabb5_large.png" },
-        { name: "Axe", price: 190.50, imageUrl: "https://cdn.shopify.com/s/files/1/0099/5732/products/Product-Image-Unavailable_0d7a0977-accb-4820-9de6-6a77e6baabb5_large.png" },
-        { name: "Bandsaw", price: 562.13, imageUrl: "https://cdn.shopify.com/s/files/1/0099/5732/products/Product-Image-Unavailable_0d7a0977-accb-4820-9de6-6a77e6baabb5_large.png" },
-        { name: "Chisel", price: 12.9, imageUrl: "https://cdn.shopify.com/s/files/1/0099/5732/products/Product-Image-Unavailable_0d7a0977-accb-4820-9de6-6a77e6baabb5_large.png" },
-        { name: "Hacksaw", price: 18.45, imageUrl: "https://cdn.shopify.com/s/files/1/0099/5732/products/Product-Image-Unavailable_0d7a0977-accb-4820-9de6-6a77e6baabb5_large.png" },
+        { name: "Sledgehammer", price: 125.75 },
+        { name: "Axe", price: 190.50 },
+        { name: "Bandsaw", price: 562.13 },
+        { name: "Chisel", price: 12.9 },
+        { name: "Hacksaw", price: 18.45 },
     ]
 
     return (
@@ -33,7 +33,7 @@ const ProductList: React.FC<Props> = ({ addProduct = () => { } }: Props) => {
                         <View style={{ flexDirection: 'row' }}>
                             <View style={{flex: 1}}>
                                 <Image 
-                                    source={{uri: item.imageUrl}}
+                                    source={{uri: "https://cdn.shopify.com/s/files/1/0099/5732/products/Product-Image-Unavailable_0d7a0977-accb-4820-9de6-6a77e6baabb5_large.png"}}
                                     style={styles.productImage}
                                 />
                             </View>
