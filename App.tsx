@@ -15,24 +15,43 @@ import ProductList from './components/Product/ProductList'
 import Cart from './components/Cart/Cart'
 import rootReducer from './reducers/combineReducers';
 
+import AsyncStorage from '@react-native-community/async-storage'
+import { persistStore, persistReducer } from 'redux-persist'
+// import {createLogger} from 'redux-logger';
+
+import { PersistGate } from 'redux-persist/es/integration/react'
+
+const persisConfig = {
+  key: 'root',
+  storage: AsyncStorage,
+  whitelist: ['shop']
+}
+
+const persistedReducer = persistReducer(persisConfig, rootReducer);
+
 function configureStore() {
-  const store = createStore<ShoppingCartState>(rootReducer,
+  const store = createStore<ShoppingCartState>(
+    persistedReducer,
   );
   return store;
 }
 const store = configureStore();
+
+const persistedStore = persistStore(store)
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
     <Provider store={store as any}>
-      <NavigationContainer>
-        <Tab.Navigator>
-          <Tab.Screen name="Products" component={ProductList} />
-          <Tab.Screen name="CheckOut" component={Cart} />
-        </Tab.Navigator>
-      </NavigationContainer>
+      <PersistGate persistor={persistedStore} loading={null}>
+        <NavigationContainer>
+          <Tab.Navigator>
+            <Tab.Screen name="Products" component={ProductList} />
+            <Tab.Screen name="CheckOut" component={Cart} />
+          </Tab.Navigator>
+        </NavigationContainer>
+      </PersistGate>
     </Provider>
   );
 }
