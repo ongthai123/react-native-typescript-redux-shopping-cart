@@ -1,5 +1,5 @@
 import React, { useEffect, Dispatch } from 'react';
-import { StyleSheet, Text, View, SafeAreaView, FlatList, ScrollView, Button, Image } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, FlatList, ScrollView, Button, Image, TouchableOpacity } from 'react-native';
 import { ShoppingCartState, ShoppingItem } from '../../types';
 
 import { Product } from '../../types/index'
@@ -46,10 +46,10 @@ const Cart: React.FC<Props> = ({ items, total, addProduct = () => { }, removePro
 					</View>
 					<View style={{ width: "10%", alignItems: "center", justifyContent: "center" }}>
 						<View style={styles.quantityButtonContainer}>
-							<Button title="+" onPress={() => { dispatch(actions.addProduct(item)) }}></Button>
+							<TouchableOpacity style={{backgroundColor: '#FF5733'}} onPress={() => { dispatch(actions.addProduct(item)) }}><Text>+</Text></TouchableOpacity>
 						</View>
 						<View style={styles.quantityButtonContainer}>
-							<Button title="-" onPress={() => { dispatch(actions.decreaseProduct(item)) }}></Button>
+							<TouchableOpacity style={{backgroundColor: '#FF5733'}} onPress={() => { dispatch(actions.decreaseProduct(item)) }}><Text>-</Text></TouchableOpacity>
 						</View>
 					</View>
 					<View style={{ width: "20%", alignItems: "center", justifyContent: "center" }}>
@@ -57,7 +57,7 @@ const Cart: React.FC<Props> = ({ items, total, addProduct = () => { }, removePro
 						<View><Text style={styles.productQuantity}>${+(Math.round(item.quantity * item.price * 100) / 100).toFixed(2)}</Text></View>
 					</View>
 					<View style={{ width: '10%', alignItems: 'center', justifyContent: 'center' }}>
-						<Button title="X" onPress={() => { dispatch(actions.removeProduct(item)) }}></Button>
+						<TouchableOpacity style={{backgroundColor: '#FF5733'}} onPress={() => { dispatch(actions.removeProduct(item)) }}><Text>X</Text></TouchableOpacity>
 					</View>
 				</View>
 			</View>
@@ -75,8 +75,8 @@ const Cart: React.FC<Props> = ({ items, total, addProduct = () => { }, removePro
 						</ScrollView>
 					</View>
 					<View style={tableData.length > 0 ? styles.totalContainer : { display: "none" }}>
-						<View>
-							<View style={{ alignItems: 'center' }}>
+						<View style={{flex: 1}}>
+							<View style={{ alignItems: 'center'}}>
 								<Text style={{ fontSize: 30 }}>Checkout</Text>
 							</View>
 							<View style={{ marginTop: 20, justifyContent: 'center' }}>
@@ -97,8 +97,8 @@ const Cart: React.FC<Props> = ({ items, total, addProduct = () => { }, removePro
 									</View>
 								</View>
 							</View>
-							<View style={{ paddingHorizontal: 10, backgroundColor: '#FF5733', borderRadius: 20, alignItems: 'center', marginTop: 70 }}>
-								<Button title="Pay" color="#000" onPress={() => { }}></Button>
+							<View style={{ paddingHorizontal: 10, backgroundColor: '#FF5733', borderRadius: 20, marginTop: 50 }}>
+								<TouchableOpacity style={{backgroundColor: '#FF5733', alignItems: 'center', justifyContent: 'center', height: 30}} onPress={() => { }}><Text>Pay</Text></TouchableOpacity>
 							</View>
 						</View>
 					</View>
